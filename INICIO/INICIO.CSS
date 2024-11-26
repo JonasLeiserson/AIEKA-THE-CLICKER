@@ -19,16 +19,25 @@ body
 }
 #TextoNumeroDePollitos
 {
-font-size: 60px;
+font-size: 4vw;
 }
 
 #NumeroDePollitos
 {
     width: 100%;
-    flex: 1 1 25%; 
+    flex: 0 1 auto; 
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#BotonDePollo
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; 
+    flex: 1 1 auto; 
 }
 #botonAieka
 {
@@ -38,7 +47,8 @@ font-size: 60px;
     background-position: center;
     border-radius: 50%;
     cursor: pointer;
-    flex: 1 1 50%;
-    height: 40%;
-    width: 50%;
+    height: 35vh; 
+    width: 35vh; 
+    flex: 0 1 auto;
+    border: none;
 }

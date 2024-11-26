@@ -1,0 +1,21 @@
+{
+  "name": "aieka-the-clicker",
+  "version": "1.0.0",
+  "main": "INICIO.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel  INICIO/INICIO.html",
+    "build": "parcel build  INICIO/INICIO.html" 
+    
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "parcel": "^2.13.2"
+  },
+  "description": ""
+}
