@@ -10,15 +10,18 @@ console.log("Servidor Express arrancando...");
 
 
 
-let puntaje = 0
+let puntajes = 0
 
 
-app.get('/puntaje', (req, res) => {
-    puntaje = puntaje + 1
-    res.json({ puntaje: puntaje });  
+app.post('/puntaje', (req, res) => 
+  {
+    const {puntaje} = req.body
+    puntajes += puntaje
+    res.json({ puntajes });  
   });
+
   app.get('/ActualizarPuntaje', (req, res) => {
-    res.json({ puntaje: puntaje });  
+    res.json({ puntajes });  
   });
 
 

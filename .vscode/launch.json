@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "chrome",
+            "name": "http://puntajeASumar",
+            "request": "launch",
+            "url": "http://puntajeASumar"
+        }
+    ]
+}

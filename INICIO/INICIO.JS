@@ -3,56 +3,66 @@
 let BotonesDeMejora = document.querySelectorAll(".BotonDeMejora")
 let DescripcionesDeMejora = document.querySelectorAll(".infoDeMejora")
 let Pollitos = 0
+
+let Arroz = false;
+let teriyaki = false;
+let boll = false;
+
+function ActualizarImagen()
+{
+const ImagenDePollo = document.getElementById("botonAieka")
+ImagenDePollo.src = "url('../IMAGENES/pollitobase.jfif')";
+
+if (Arroz === true) {
+  botonAieka.style.backgroundImage = "url('../IMAGENES/arrozconpollo.jfif')";
+} 
+}
 function BotonAiekaClickeado()
 {
-    fetch('http://localhost:3000/puntaje', {
-        method: 'GET',  
-        headers: {
-          'Content-Type': 'application/json',  
-        }
-      })
-      .then(response => response.json())  
-      .then(data => {
-        Pollitos = data.puntajes
-        ActualizarPollitos()
-      })
+  let CantidadASumar = 1
+  if (Arroz === true)
+  {
+    CantidadASumar = 2
+  }
+
+  SumarORestarPuntaje(CantidadASumar)
 }
 function ActualizarPollitos()
 {
-    fetch('http://localhost:3000/ActualizarPuntaje', {
-        method: 'GET',  
-        headers: 
-        {
-          'Content-Type': 'application/json',  
-        }
-      })
-      .then(response => response.json())  
-      .then(data => {
-        Pollitos = data.puntaje
-        console.log('Puntaje actual:', Pollitos);  
-
+        SumarORestarPuntaje(0)
         const SpanPollos = document.getElementById("TextoNumeroDePollitos")
         SpanPollos.innerText = "POLLITOS:" + Pollitos 
-      })
       
 }
 
 
-function BotonDeMejoraClickeado(index)
+function MejoraComprada(index)
 {
+  ActualizarPollitos()
   switch (index) 
   {
     case Arroz:
-      
+      if(Pollitos >= 500)
+      {
+        alert("Pollito comprado")
+        Arroz = true
+        SumarORestarPuntaje(-500)
+      }
+      else
+      {
+        alert("No hay guita")
+      }
       break;
     case teriyaki:
 
       break;
-    case valor3:
+    case boll:
       
       break;
   }
 }
+
+
 function MostrarDescripicionMejora(button)
 {
   const id = button.getAttribute('data-id');
@@ -84,6 +94,27 @@ function DejarDeMostrarDescripicionMejora(button)
     }
 
 }
+
+function SumarORestarPuntaje(puntajeASumar)
+{
+    
+    fetch('http://localhost:3000/puntaje', {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ puntaje: puntajeASumar })
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        Pollitos = data.puntajes; 
+        ActualizarPollitos();
+      })
+}
+
+
 window.addEventListener('load', function() 
 {
     ActualizarPollitos()
