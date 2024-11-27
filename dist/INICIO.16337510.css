@@ -1,0 +1,51 @@
+body {
+  background-image: url("fondocoockiecliker.fcda3e99.jfif");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#FondoAieka {
+  background-image: url("aiekafondo.00193b24.jfif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 55vw;
+  height: 100vh;
+  display: flex;
+}
+
+#TextoNumeroDePollitos {
+  font-size: 4vw;
+}
+
+#NumeroDePollitos {
+  flex: 0 auto;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: flex;
+}
+
+#BotonDePollo {
+  flex: auto;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: flex;
+}
+
+#botonAieka {
+  cursor: pointer;
+  background-image: url("pollitobase.937d3009.jfif");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: none;
+  border-radius: 50%;
+  flex: 0 auto;
+  width: 35vh;
+  height: 35vh;
+}
+/*# sourceMappingURL=INICIO.16337510.css.map */
