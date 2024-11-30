@@ -1,0 +1,44 @@
+{
+    "mejoras":
+ [
+    {
+        "id": 1,
+        "nombre": "Arroz",
+        "descripcion": "mmmm pasta base, Aumenta la cantidad de pollitos obtenidos por clic.",
+        "costo": 500,
+        "nivel": 1,
+        "efecto": 
+        {
+          "incrementoPollitosPorClic": 2
+        },
+        "imagen": "../IMAGENES/Arroz-granel-industrial.png",
+        "comprada": false
+      },
+      {
+        "id": 2,
+        "nombre": "Teriyaki",
+        "descripcion": "sigue estando horrible, +%10 de pollo por click.",
+        "costo": 1000,
+        "nivel": 1,
+        "efecto": 
+        {
+          "AumentarPorcentaje": 10
+        },
+        "imagen": "../IMAGENES/salsa-terikaki.png",
+        "comprada": false
+      },
+      {
+        "id": 3,
+        "nombre": "BOLL DE PLASTICO",
+        "descripcion": "Sacado de la basura y listo para repetir, Desbloqueo a lo farmers de pollo",
+        "costo": 300,
+        "nivel": 1,
+        "efecto": 
+        {
+          "Desbloquear": "FarmersDePollo"
+        },
+        "imagen": "../IMAGENES/bandejas-de-plastico-y-tapas-PP-y-PS.png",
+        "comprada": false
+      }
+ ]
+}
