@@ -53,15 +53,12 @@ function MejoraComprada(mejora)
 function MostrarDescripicionMejora(button, mostrar)
 {
   const id = button.getAttribute('data-id');
-  const descripcion = document.querySelector(`.infoDeMejora[data-id="${id}"]`);
-  const texto = document.querySelector(`.TextoDeMejora[data-id="${id}"]`);
-  const imagen = document.querySelector(`.ImagenDeMejora[data-id="${id}"]`);
+  const descripcion = document.querySelector(`.DivinfoDeMejora[data-id="${id}"]`);
+ 
 
     if (descripcion.getAttribute('data-id') === id)
     {
-      descripcion.style.display = mostrar ? 'block' : 'none';
-      texto.style.display = mostrar ? 'none' : 'block';
-      imagen.style.display = mostrar ? 'none' : 'block';
+      descripcion.style.display = mostrar ? 'block' : 'none' 
     }
     
 }
@@ -126,23 +123,54 @@ BotonDeImagen.alt = 'Imagen del botón';
 BotonDeImagen.setAttribute("data-id", mejora.id)
 BotonDeImagen.setAttribute("class", "ImagenDeMejora")
 
+const DivDeCostoEImagen = document.createElement('div');
+DivDeCostoEImagen.setAttribute("data-id", mejora.id)
+DivDeCostoEImagen.setAttribute("class", "DivDeCostoEImagen") 
 
-//Span
-const BotonDeTexto = document.createElement('span');
-BotonDeTexto.innerText = mejora.nombre;
-BotonDeTexto.setAttribute("data-id", mejora.id)
-BotonDeTexto.setAttribute("class", "TextoDeMejora")
+const ImagenDePollitos = document.createElement('img');
+ImagenDePollitos.src = "../IMAGENES/patita de pollo.png";
+ImagenDePollitos.alt = 'Imagen del botón';
+ImagenDePollitos.setAttribute("data-id", mejora.id)
+ImagenDePollitos.setAttribute("class", "ImagenPatitaDePollo2")
 
-//Div
-const DivDeBoton = document.createElement('div');
-DivDeBoton.innerText = mejora.descripcion;
-DivDeBoton.setAttribute("data-id", mejora.id)
-DivDeBoton.setAttribute("class", "infoDeMejora")
+//GranDiv
+const DivTotal = document.createElement('div');
+DivTotal.setAttribute("data-id", mejora.id)
+DivTotal.setAttribute("class", "DivinfoDeMejora")
+
+//Div de nombre y costo
+const DivDeArriba = document.createElement('div');
+DivDeArriba.setAttribute("data-id", mejora.id)
+DivDeArriba.setAttribute("class", "DivDeArribainfoDeMejora")
+
+//Nombre
+const Texto = document.createElement('span');
+Texto.innerText = mejora.nombre;
+Texto.setAttribute("data-id", mejora.id)
+Texto.setAttribute("class", "TextoDeMejora")
+
+//Costo
+const Costo = document.createElement('span');
+Costo.innerText = mejora.costo;
+Costo.setAttribute("data-id", mejora.id)
+Costo.setAttribute("class", "TextoDeMejora")
+
+//Descripcion
+const DivDeAbajo = document.createElement('div');
+DivDeAbajo.innerText =  mejora.descripcion;
+DivDeAbajo.setAttribute("data-id", mejora.id)
+DivDeAbajo.setAttribute("class", "infoDeMejora")
 
 //Ruta
+
 BotonDeMejora.appendChild(BotonDeImagen);
-BotonDeMejora.appendChild(BotonDeTexto);
-BotonDeMejora.appendChild(DivDeBoton);
+DivTotal.appendChild(DivDeArriba);
+DivDeArriba.appendChild(Texto);
+DivDeArriba.appendChild(DivDeCostoEImagen);
+DivDeCostoEImagen.appendChild(Costo);
+DivDeCostoEImagen.appendChild(ImagenDePollitos);
+DivTotal.appendChild(DivDeAbajo);
+BotonDeMejora.appendChild(DivTotal);
 
 const Ruta = document.getElementById('Mejoras');
 Ruta.appendChild(BotonDeMejora);
