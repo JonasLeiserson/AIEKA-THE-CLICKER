@@ -27,15 +27,12 @@ app.post('/puntaje', (req, res) =>
 
   const db = mysql.createConnection({
     host: 'localhost',
-    user: '49516747',
+    user: 'root',
     password: 'pollo',
-    database: 'DatosImportantes'
+    database: 'DatosDeLosUsuarios'
 });
 
 db.connect(err => {
-  if (err) {
-      throw err;
-  }
   console.log('Conectado a la base de datos MySQL');
 });
 
@@ -55,7 +52,7 @@ app.post('/guardar-jugador', (req, res) => {
   const sql = 'INSERT INTO jugadores (nombre, puntuacion) VALUES (?, ?)';
   db.query(sql, [nombre, puntuacion], (err, result) => {
       if (err) throw err;
-      res.send('Datos guardados');
+      res.send(req.body);
   });
 });
 

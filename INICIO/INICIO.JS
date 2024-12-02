@@ -10,7 +10,7 @@ let Mejoras
 let Arroz = false;
 let teriyaki = false;
 let boll = false;
-
+let Nombre = ""
 function ActualizarImagen()
 {
 const ImagenDePollo = document.getElementById("botonAieka")
@@ -193,10 +193,12 @@ window.addEventListener('load', function()
 });    
 
 async function guardarDatosJugador() {  
-  const datos = { nombre: 'Jugador1', puntuacion: 100 };   
-  const response = await fetch('/guardar-jugador', {    
+  const nombre = prompt("Pone tu nombre")
+  const datos = { nombre: nombre, puntuacion: Pollitos };   
+  const response = await fetch('http://localhost:3000/guardar-jugador', {    
       method: 'POST',    
-      headers: {   
+      headers: 
+      {   
           'Content-Type': 'application/json'  
       },   
       body: JSON.stringify(datos)    
@@ -205,9 +207,19 @@ async function guardarDatosJugador() {
   console.log(result);
 }
 
-async function obtenerDatosJugador() {
-  const nombre = 'Jugador1';
-  const response = await fetch(`/obtener-jugador/${nombre}`);
+async function obtenerDatosJugador() 
+{
+  if(Nombre === "")
+  {
+    Nombre = prompt("Pone tu nombre")
+  }
+  const response = await fetch(`http://localhost:3000/obtener-jugador/${Nombre}`);
   const datos = await response.json();
   console.log(datos);
+  CargarDatos(datos)
+}
+function CargarDatos(datos)
+{
+  Nombre = datos.nombre
+  Pollitos = datos.puntuacion
 }
