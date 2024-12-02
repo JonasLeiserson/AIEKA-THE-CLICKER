@@ -13,7 +13,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.21.1",
-    "sqlite3": "^5.1.7"
+    "mysql2": "^3.11.5"
   },
   "devDependencies": {
     "parcel": "^2.13.2"

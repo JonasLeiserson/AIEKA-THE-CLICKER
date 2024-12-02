@@ -85,7 +85,7 @@ function SumarORestarPuntaje(puntajeASumar)
 function CrearBotones()
 {
   Mejoras.forEach(mejora => 
-  {
+{
 
 //Boton
 const BotonDeMejora = document.createElement("button");
@@ -191,3 +191,23 @@ window.addEventListener('load', function()
      CrearBotones()
   });
 });
+
+async function guardarDatosJugador() {
+  const datos = { nombre: 'Jugador1', puntuacion: 100 };
+  const response = await fetch('/guardar-jugador', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(datos)
+  });
+  const result = await response.text();
+  console.log(result);
+}
+
+async function obtenerDatosJugador() {
+  const nombre = 'Jugador1';
+  const response = await fetch(`/obtener-jugador/${nombre}`);
+  const datos = await response.json();
+  console.log(datos);
+}
