@@ -185,21 +185,21 @@ window.addEventListener('load', function()
   fetch('../datos/DatosMejoras.json')
   .then(response => response.json())
   .then(data => 
-  {
-     Mejoras = data.mejoras
-     console.log(Mejoras)
-     CrearBotones()
-  });
-});
+  {   
+    Mejoras = data.mejoras  
+    console.log(Mejoras)   
+    CrearBotones()    
+  });    
+});    
 
-async function guardarDatosJugador() {
-  const datos = { nombre: 'Jugador1', puntuacion: 100 };
-  const response = await fetch('/guardar-jugador', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(datos)
+async function guardarDatosJugador() {  
+  const datos = { nombre: 'Jugador1', puntuacion: 100 };   
+  const response = await fetch('/guardar-jugador', {    
+      method: 'POST',    
+      headers: {   
+          'Content-Type': 'application/json'  
+      },   
+      body: JSON.stringify(datos)    
   });
   const result = await response.text();
   console.log(result);

@@ -8,12 +8,6 @@ app.use(express.json());
 app.use(cors());
 console.log("Servidor Express arrancando...");
 
-
-[mysqld]
-PORT=3306
-
-
-
 let puntajes = 0
 
 
@@ -33,9 +27,9 @@ app.post('/puntaje', (req, res) =>
 
   const db = mysql.createConnection({
     host: 'localhost',
-    user: 'tu_usuario',
-    password: 'tu_contraseña',
-    database: 'nombre_de_tu_base_de_datos'
+    user: '49516747',
+    password: 'pollo',
+    database: 'DatosImportantes'
 });
 
 db.connect(err => {
