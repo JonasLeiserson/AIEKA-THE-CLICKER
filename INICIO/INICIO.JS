@@ -6,11 +6,11 @@ let Pollitos = 0
 let CantidadASumar = 1
 let PorcentajeAdicionalDeClicks = 0 
 let Mejoras
+let CosasCompradas = []
 
 let Arroz = false;
 let teriyaki = false;
-let boll = false;
-let Nombre = ""
+let boll = false; 
 function ActualizarImagen()
 {
 const ImagenDePollo = document.getElementById("botonAieka")
@@ -47,6 +47,7 @@ function MejoraComprada(mejora)
       PorcentajeAdicionalDeClicks += mejora.efecto.AumentarPorcentaje;
   }
   ActualizarPollitos()
+  CosasCompradas.push(mejora.nombre)
 }
 
 
@@ -194,7 +195,7 @@ window.addEventListener('load', function()
 
 async function guardarDatosJugador() {  
   const nombre = prompt("Pone tu nombre")
-  const datos = { nombre: nombre, puntuacion: Pollitos };   
+  const datos = { nombre: nombre, puntuacion: Pollitos,  CosasCompradas: JSON.stringify(CosasCompradas || []) };   
   const response = await fetch('http://localhost:3000/guardar-jugador', {    
       method: 'POST',    
       headers: 
@@ -209,18 +210,26 @@ async function guardarDatosJugador() {
 
 async function obtenerDatosJugador() 
 {
-  if(Nombre === "")
+  
+  const  Nombre = prompt("Pone tu nombre")
+  if(Nombre === null)
   {
-    Nombre = prompt("Pone tu nombre")
+    Nombre = prompt("Te dije que pongas un nombre, null no es un nombre pedazo de idiota") 
   }
   const response = await fetch(`http://localhost:3000/obtener-jugador/${Nombre}`);
   const datos = await response.json();
   console.log(datos);
-    Nombre = ""
   CargarDatos(datos)
 }
 function CargarDatos(datos)
 {
-  Nombre = datos.nombre
   Pollitos = datos.puntuacion
+  fetch('http://localhost:3000/CargarDatos', {    
+    method: 'POST',    
+    headers: 
+    {   
+        'Content-Type': 'application/json'  
+    },   
+    body: JSON.stringify(datos)    
+});
 }

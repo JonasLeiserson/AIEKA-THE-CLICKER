@@ -10,6 +10,7 @@ app.use(cors());
 console.log("Servidor Express arrancando...");
 
 let puntajes = 0
+let Nombre = ""
 
 
 app.post('/puntaje', (req, res) => 
@@ -42,7 +43,7 @@ db.query(`
       id INT AUTO_INCREMENT PRIMARY KEY,
       nombre VARCHAR(255) NOT NULL,
       puntuacion INT NOT NULL,
-      CosasCompradas TEXT NOT NULL
+      CosasCompradas JSON
   )
 `, (err, result) => {
   if (err) throw err;
@@ -50,9 +51,9 @@ db.query(`
 });
 
 app.post('/guardar-jugador', (req, res) => {
-  const { nombre, puntuacion } = req.body;
-  const sql = 'INSERT INTO jugadores (nombre, puntuacion) VALUES (?, ?)';
-  db.query(sql, [nombre, puntuacion], (err, result) => {
+  const { nombre, puntuacion, CosasCompradas } = req.body
+  const sql = 'INSERT INTO jugadores (nombre, puntuacion, CosasCompradas) VALUES (?, ?, ?)';
+  db.query(sql, [nombre, puntuacion, CosasCompradas], (err, result) => {
       if (err) throw err;
       res.send(req.body);
   });
@@ -65,12 +66,20 @@ app.get('/obtener-jugador/:nombre', (req, res) => {
     if (result.length === 0) {
       res.status(404).json({ error: 'Jugador no encontrado' });
     } else {
-     
       res.json(result[0]); 
+      puntajes = result.puntuacion 
+      Nombre = result.nombre
+
     }
   });
 });
 app.listen(PORT, () => 
 {
   console.log(`Server is running at http://localhost:${PORT}`);
+});
+
+app.post('/CargarDatos', (req, res) => {
+
+  res.json({});  
+
 });
