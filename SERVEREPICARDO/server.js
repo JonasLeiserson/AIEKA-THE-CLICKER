@@ -4,6 +4,7 @@ const mysql = require('mysql2');
 const app = express();
 const cors = require('cors');
 const PORT = 3000;
+
 app.use(express.json());
 app.use(cors());
 console.log("Servidor Express arrancando...");
@@ -40,7 +41,8 @@ db.query(`
   CREATE TABLE IF NOT EXISTS jugadores (
       id INT AUTO_INCREMENT PRIMARY KEY,
       nombre VARCHAR(255) NOT NULL,
-      puntuacion INT NOT NULL
+      puntuacion INT NOT NULL,
+      CosasCompradas TEXT NOT NULL
   )
 `, (err, result) => {
   if (err) throw err;
@@ -60,8 +62,12 @@ app.get('/obtener-jugador/:nombre', (req, res) => {
   const nombre = req.params.nombre;
   const sql = 'SELECT * FROM jugadores WHERE nombre = ?';
   db.query(sql, [nombre], (err, result) => {
-      if (err) throw err;
-      res.json(result);
+    if (result.length === 0) {
+      res.status(404).json({ error: 'Jugador no encontrado' });
+    } else {
+     
+      res.json(result[0]); 
+    }
   });
 });
 app.listen(PORT, () => 

@@ -216,6 +216,7 @@ async function obtenerDatosJugador()
   const response = await fetch(`http://localhost:3000/obtener-jugador/${Nombre}`);
   const datos = await response.json();
   console.log(datos);
+    Nombre = ""
   CargarDatos(datos)
 }
 function CargarDatos(datos)
